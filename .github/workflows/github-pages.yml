@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  pages:
+  Publish_GitHub_Pages:
     runs-on: ubuntu-20.04
     environment:
       name: github-pages
@@ -37,4 +37,4 @@ jobs:
     #     cache: false
     - id: requirements
       name: Install requirements.txt
-      run: python -m pip install -r ./docs/src/requirements.txt
+      run: python -m pip install -r ./docs/src/source/requirements.txt

@@ -32,6 +32,6 @@ jobs:
     - id: deployment
       uses: sphinx-notes/pages@v3
       with:
-        documentation_path: ./documentation/src/source
-        requirements_path: ./documentation/src/requirements.txt
+        documentation_path: ./docs/src/source
+        requirements_path: ./docs/src/requirements.txt
         cache: false

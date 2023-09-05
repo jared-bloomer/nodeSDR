@@ -29,9 +29,11 @@ jobs:
     - uses: awalsh128/cache-apt-pkgs-action@master
       with:
         packages: lilypond timidity imagemagick fonts-noto-cjk graphviz plantuml ffmpeg
-    - id: deployment
-      uses: sphinx-notes/pages@v3
-      with:
-        documentation_path: ./docs/src/source
-        requirements_path: ./docs/src/requirements.txt
-        cache: false
+    # - id: deployment
+    #   uses: sphinx-notes/pages@v3
+    #   with:
+    #     documentation_path: ./docs/src/source
+    #     requirements_path: ./docs/src/requirements.txt
+    #     cache: false
+    - id: requirements install
+      run: python -m pip install -r ./docs/src/requirements.txt

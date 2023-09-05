@@ -35,6 +35,9 @@ jobs:
     #     documentation_path: ./docs/src/source
     #     requirements_path: ./docs/src/source/requirements.txt
     #     cache: false
+    - id: checkout
+      name: Checkout Repo Code
+      uses: actions/checkout@v3
     - id: requirements
       name: Install requirements.txt
       run: |

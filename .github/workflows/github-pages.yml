@@ -37,4 +37,6 @@ jobs:
     #     cache: false
     - id: requirements
       name: Install requirements.txt
-      run: python -m pip install -r docs/src/source/requirements.txt
+      run: |
+        ls -al # DEBUG Statement
+        python -m pip install -r ./docs/src/source/requirements.txt

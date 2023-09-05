@@ -35,5 +35,6 @@ jobs:
     #     documentation_path: ./docs/src/source
     #     requirements_path: ./docs/src/requirements.txt
     #     cache: false
-    - id: requirements install
+    - id: requirements
+      name: Install requirements.txt
       run: python -m pip install -r ./docs/src/requirements.txt

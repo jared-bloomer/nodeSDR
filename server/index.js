@@ -43,12 +43,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json()); // Add body-parser to app object
 app.use(cookieParser()); // Activate use of cookies
 
-// Import Routes
-const homepageRouter = require('./routes/homepage');
-
-app.get("/", homepageRouter);
 // api routes
-app.use('/users', require('./controllers/users.controller'));
+app.use('/api/users', require('./controllers/users.controller'));
 
 // custom middleware logger
 app.use(logger);

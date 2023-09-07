@@ -1,8 +1,26 @@
 ﻿const config = require('config');
 const jwt = require('jsonwebtoken');
+const db = require('../middleware/db');
 
 // users hardcoded for simplicity, store in a db for production applications
-const users = [{ id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' }];
+//const users = [{ id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' }];
+var users = db.getAllUsers()
+    .then(res=> {
+        console.log(res.length)
+        console.log("Checking Users Table")
+        if (res.length == 0) {
+            console.log('Checking Roles Table')
+            var roles = db.getRoleByName('admin')
+            .then(result=> {
+                if(result.length == 0) {
+                    console.log("Creating 'admin' Role")
+                    db.addRole('admin')
+                }
+            })
+            console.log("Creating Default admin user!")
+            db.addUser('admin', 'admin', 'admin', 'admin', 'admin')
+        }
+    });
 
 module.exports = {
     authenticate,

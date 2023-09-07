@@ -49,7 +49,7 @@ async function addUser(username, password, fname, lname, role) {
         var query = await db('users').join('roles', 'roles.role', '=', role).insert({username: username, password: hashpw, firstname: fname, lastname: lname, role: userRole[0].id})
         return query
     } else {
-        return { error: "Callsign already exist!"}
+        return { error: "User already exist!"}
     }
 }
 

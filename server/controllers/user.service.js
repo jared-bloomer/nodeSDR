@@ -25,7 +25,8 @@ var users = db.getAllUsers()
 module.exports = {
     authenticate,
     getAll,
-    add
+    add,
+    userDelete
 };
 
 async function authenticate({ req, res, username, password }) {
@@ -51,6 +52,11 @@ async function getAll() {
 async function add({ username, password, fname, lname, role }) {
     const userAdd = db.addUser(username, password, fname, lname, role);
     return userAdd;
+}
+
+async function userDelete({ username }) {
+    const userDel = db.delUser(username);
+    return userDel;
 }
 
 // helper functions

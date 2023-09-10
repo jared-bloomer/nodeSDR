@@ -7,6 +7,7 @@ const { requireAdmin } = require('../middleware/requireRole');
 router.post('/authenticate', authenticate);
 router.get('/', getAll);
 router.post('/add', requireAdmin, add);
+router.post('/delete', requireAdmin, userDelete);
 
 module.exports = router;
 
@@ -28,3 +29,8 @@ function add(req, res, next) {
         .catch(next);
 }
 
+function userDelete(req, res, next) {
+    userService.userDelete(req.body)
+        .then(user => res.json(user))
+        .catch(next);
+}

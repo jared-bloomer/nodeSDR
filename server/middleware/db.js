@@ -53,7 +53,13 @@ async function addUser(username, password, fname, lname, role) {
     }
 }
 
-async function delUser(req, res, next) {
+async function delUser(username) {
+    if (getUser(username)) {
+        var query = await db('users').where('username', username).del()
+        return query
+    } else {
+        throw "User not found!"
+    }
     return next()
 }
 

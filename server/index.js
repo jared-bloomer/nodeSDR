@@ -45,6 +45,7 @@ app.use(cookieParser()); // Activate use of cookies
 
 // api routes
 app.use('/api/users', require('./controllers/users.controller'));
+app.use('/api/roles', require('./controllers/roles.controller'));
 
 // custom middleware logger
 app.use(logger);

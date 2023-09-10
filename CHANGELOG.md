@@ -11,3 +11,6 @@
 * Created /api/users/delete endpoint
 * Created /api/users/list endpoint
 * Created /api/users/changePassword endpoint
+* Created /api/roles/list endpoint
+* Created /api/roles/createrole endpoint
+* Created /api/roles/delete endpoint

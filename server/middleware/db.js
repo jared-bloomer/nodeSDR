@@ -76,15 +76,23 @@ async function delUser(username) {
     } else {
         throw "User not found!"
     }
-    return next()
 }
 
 async function updateUserRole(req, res, next) {
     return next()
 }
 
+async function listAllRoles() {
+    var query = await db('roles').select('role')
+    return query
+}
 async function getAllRoles(req, res, next) {
     var query = await db('roles').select()
+    return query
+}
+
+async function getRoleByName(role) {
+    var query = await db('roles').select("id").where('role', role)
     return query
 }
 
@@ -103,8 +111,13 @@ async function addRole(role) {
     return query
 }
 
-async function delRole(req, res, next) {
-    return next()
+async function delRole(role) {
+    if (getRoleByName(role)) {
+        var query = await db('roles').where('role', role).del()
+        return query
+    } else {
+        throw "User not found!"
+    }
 }
 
 async function updateRole(req, res, next) {
@@ -125,6 +138,7 @@ module.exports = {
     addUser,
     delUser,
     updateUserRole,
+    listAllRoles,
     getAllRoles,
     getRoleByName,
     getRoleById,

@@ -26,7 +26,8 @@ module.exports = {
     authenticate,
     getAll,
     add,
-    userDelete
+    userDelete,
+    userList
 };
 
 async function authenticate({ req, res, username, password }) {
@@ -57,6 +58,11 @@ async function add({ username, password, fname, lname, role }) {
 async function userDelete({ username }) {
     const userDel = db.delUser(username);
     return userDel;
+}
+
+async function userList() {
+    const userList = db.listAllUsers();
+    return userList;
 }
 
 // helper functions

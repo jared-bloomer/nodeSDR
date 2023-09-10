@@ -31,6 +31,11 @@ async function getAllUsers() {
     return query
 }
 
+async function listAllUsers() {
+    var query = await db('users').select('username', 'firstname', 'lastname')
+    return query
+}
+
 async function getUser(username) {
     var query = await db('users').select().where('username', username)
     return query
@@ -102,6 +107,7 @@ async function roleAuth(roleName, res, req, next) {
 
 module.exports = {
     getAllUsers,
+    listAllUsers,
     getUser,
     getUserByID,
     addUser,

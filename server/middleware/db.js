@@ -71,6 +71,11 @@ async function getRoleByName(role) {
     return query
 }
 
+async function getRoleById(id) {
+    var query = await db('roles').select("role").where('id', id)
+    return query
+}
+
 async function addRole(role) {
     var query = await db('roles').insert({role: role})
     return query
@@ -98,6 +103,7 @@ module.exports = {
     updateUserRole,
     getAllRoles,
     getRoleByName,
+    getRoleById,
     addRole,
     delRole,
     updateRole,

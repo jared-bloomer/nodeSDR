@@ -28,12 +28,12 @@ module.exports = {
     add
 };
 
-async function authenticate({ username, password }) {
+async function authenticate({ req, res, username, password }) {
     const user = await db.getUser(username)
     const validPass = await bcrypt.compare(password, user[0]['password']);
     if (validPass === true && username === user[0]['username']) {
         // create a jwt token that is valid for 7 days
-        const token = jwt.sign({ sub: user.id }, config.get('secret'), { expiresIn: '7d' });
+        const token = jwt.sign({ sub: user.id, role: user[0]['role'] }, config.get('secret'), { expiresIn: '7d' });
 
         return {
             ...omitPassword(user[0]),
@@ -58,4 +58,14 @@ async function add({ username, password, fname, lname, role }) {
 function omitPassword(user) {
     const { password, ...userWithoutPassword } = user;
     return userWithoutPassword;
+}
+
+function omitCreatedAt(user) {
+    const { created_at, ...userWithoutCreated_at } = user;
+    return userWithoutCreated_at;
+}
+
+function omitUpdatedAt(user) {
+    const { updated_at, ...userWithoutUpdated_at } = user;
+    return userWithoutUpdated_at;
 }

@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const userService = require('./user.service');
+const { requireAdmin } = require('../middleware/requireRole');
 
 // routes
 router.post('/authenticate', authenticate);
 router.get('/', getAll);
-router.post('/add', add);
+router.post('/add', requireAdmin, add);
 
 module.exports = router;
 
@@ -22,8 +23,8 @@ function getAll(req, res, next) {
 }
 
 function add(req, res, next) {
-    console.log(req)
     userService.add(req.body)
         .then(user => res.json(user))
         .catch(next);
 }
+

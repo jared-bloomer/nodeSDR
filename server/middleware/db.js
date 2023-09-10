@@ -26,6 +26,17 @@ async function hashPassword(password) {
     }
 }
 
+async function changePassword(username, password) {
+    const exist = await getUser(username)
+    if (exist.length == 1) {
+        var hashpw = await hashPassword(password)
+        var query = await db('users').where('username', username).update({password: hashpw})
+        return query
+    } else {
+        return { error: "User already exist!"}
+    }
+}
+
 async function getAllUsers() {
     var query = await db('users').join('roles', 'users.role', '=', 'roles.id').select('users.id', 'users.username', 'users.password', 'users.firstname', 'users.lastname', 'roles.role', 'users.updated_at')
     return query
@@ -106,6 +117,7 @@ async function roleAuth(roleName, res, req, next) {
 }
 
 module.exports = {
+    changePassword,
     getAllUsers,
     listAllUsers,
     getUser,

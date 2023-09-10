@@ -9,6 +9,7 @@ router.get('/', getAll);
 router.post('/add', requireAdmin, add);
 router.post('/delete', requireAdmin, userDelete);
 router.post('/list', requireAdmin, userList);
+router.post('/changePassword', requireAdmin, changePassword);
 
 module.exports = router;
 
@@ -38,6 +39,12 @@ function userDelete(req, res, next) {
 
 function userList(req, res, next) {
     userService.userList()
+        .then(user => res.json(user))
+        .catch(next);
+}
+
+function changePassword(req, res, next) {
+    userService.changePassword(req.body)
         .then(user => res.json(user))
         .catch(next);
 }

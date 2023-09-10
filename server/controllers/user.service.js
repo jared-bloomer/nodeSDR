@@ -24,6 +24,7 @@ var users = db.getAllUsers()
 
 module.exports = {
     authenticate,
+    changePassword,
     getAll,
     add,
     userDelete,
@@ -44,6 +45,11 @@ async function authenticate({ req, res, username, password }) {
     } else {
         throw 'Username or password is incorrect';
     }
+}
+
+async function changePassword({ username, password }) {
+    const changePW = db.changePassword(username, password);
+    return changePW;
 }
 
 async function getAll() {

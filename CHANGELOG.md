@@ -10,3 +10,4 @@
 * Created /api/users/add endpoint
 * Created /api/users/delete endpoint
 * Created /api/users/list endpoint
+* Created /api/users/changePassword endpoint

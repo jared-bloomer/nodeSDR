@@ -78,8 +78,18 @@ async function delUser(username) {
     }
 }
 
-async function updateUserRole(req, res, next) {
-    return next()
+async function updateUserRole(username, role) {
+    if (getUser(username)) {
+        if (getRoleByName(role)) {
+            var roleId = await getRoleByName(role)
+            var query = await db('users').where('users.username', username).update('role', roleId[0]["id"])
+            return query
+        } else {
+            throw "Role not found!"
+        }
+    } else {
+        throw "User not found!"
+    }
 }
 
 async function listAllRoles() {
@@ -92,7 +102,7 @@ async function getAllRoles(req, res, next) {
 }
 
 async function getRoleByName(role) {
-    var query = await db('roles').select("id").where('role', role)
+    var query = await db('roles').where('role', role).select("id")
     return query
 }
 

@@ -1,4 +1,4 @@
-![nodeSDR](server/public/images/Logo_Orig.png)
+![nodeSDR](https://github.com/jared-bloomer/nodeSDR/blob/dev/server/public/images/Logo_Orig.PNG)
 
 NODE.js Web interface for working with SDR Devices
 

@@ -1,5 +1,8 @@
-# nodeSDR
+![nodeSDR](server/public/images/Logo_Orig.png)
+
 NODE.js Web interface for working with SDR Devices
+
+![GitHub Pages](https://github.com/jared-bloomer/nodeSDR/actions/workflows/github-pages.yml/badge.svg)
 
 ## Purpose
 The inspiration of this project was to create a more modern supported version of [OpenWebRX](https://www.openwebrx.de/) (or something similar) using a more modern language. 

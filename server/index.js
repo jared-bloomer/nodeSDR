@@ -11,6 +11,8 @@ const cors = require('cors');
 const { logger } = require('./middleware/logEvents');
 const errorHandler = require('./middleware/errorHandler');
 const jwt = require('./middleware/jwt');
+const swaggerUi = require('swagger-ui-express');
+const { apiDocumentation } = require('./docs/apidoc');
 const rtljs = require('rtljs');
 
 
@@ -22,6 +24,7 @@ app.use(express.static( "public" ));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
+
 // use JWT auth to secure the api
 app.use(jwt());
 app.use(session({
@@ -46,6 +49,9 @@ app.use(cookieParser()); // Activate use of cookies
 // api routes
 app.use('/api/users', require('./controllers/users.controller'));
 app.use('/api/roles', require('./controllers/roles.controller'));
+
+// swagger docs route
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(apiDocumentation));
 
 // custom middleware logger
 app.use(logger);

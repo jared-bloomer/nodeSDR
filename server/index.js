@@ -49,6 +49,7 @@ app.use(cookieParser()); // Activate use of cookies
 // api routes
 app.use('/api/users', require('./controllers/users.controller'));
 app.use('/api/roles', require('./controllers/roles.controller'));
+app.use('/api/sdr', require('./controllers/rtlsdr.controller'));
 
 // swagger docs route
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(apiDocumentation));

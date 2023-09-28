@@ -1,4 +1,5 @@
 const config = require('config');
+const { authenticate } = require('./users');
 
 const apiDocumentation = {
   openapi: "3.0.1",
@@ -30,7 +31,21 @@ const apiDocumentation = {
     {
       name: "users"
     }
-  ]
+  ],
+  paths: {
+    'api/users/authenticate': {
+      post: authenticate,
+    },
+  },
+  components: {
+    securitySchemes: {
+      bearerAuth: {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
+    },
+  },
 };
 
 module.exports = { apiDocumentation };

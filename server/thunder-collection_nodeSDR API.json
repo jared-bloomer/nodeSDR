@@ -1,0 +1,339 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "nodeSDR API",
+    "dateExported": "2023-10-02T01:14:06.233Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "35dda2f1-0a0a-4b85-acc5-e767f536c565",
+            "name": "users",
+            "containerId": "1b54c6b4-c99e-4db1-b00f-d37dd9f5ef0e",
+            "created": "2023-09-06T23:27:44.963Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "1b54c6b4-c99e-4db1-b00f-d37dd9f5ef0e",
+            "name": "api",
+            "containerId": "",
+            "created": "2023-09-09T20:33:25.408Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "a24caa04-d7c7-4884-8974-9b771be55c28",
+            "name": "roles",
+            "containerId": "1b54c6b4-c99e-4db1-b00f-d37dd9f5ef0e",
+            "created": "2023-09-10T15:22:46.994Z",
+            "sortNum": 30000
+        },
+        {
+            "_id": "51e22e27-81bf-4313-b7ac-1527ca85ce9f",
+            "name": "sdr",
+            "containerId": "1b54c6b4-c99e-4db1-b00f-d37dd9f5ef0e",
+            "created": "2023-09-28T02:01:03.312Z",
+            "sortNum": 40000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "618647a4-a536-4bcc-99d9-181ad1bb4aa3",
+            "colId": "518963d7-5e00-4e4c-9056-aba8ed8f2311",
+            "containerId": "35dda2f1-0a0a-4b85-acc5-e767f536c565",
+            "name": "authentication",
+            "url": "http://{{host}}:{{port}}/api/users/authenticate",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-06T23:29:42.434Z",
+            "modified": "2023-09-11T23:28:08.145Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"username\": \"{{username}}\",\n    \"password\": \"{{password}}\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "contains",
+                    "value": "token"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "json.token",
+                    "action": "setto",
+                    "value": "{{token}}"
+                }
+            ]
+        },
+        {
+            "_id": "878f60df-f74d-4c40-9fd0-dc05cfb415f6",
+            "colId": "518963d7-5e00-4e4c-9056-aba8ed8f2311",
+            "containerId": "a24caa04-d7c7-4884-8974-9b771be55c28",
+            "name": "list",
+            "url": "http://{{host}}:{{port}}/api/roles/list",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-10T15:22:56.243Z",
+            "modified": "2023-09-10T15:23:16.632Z",
+            "headers": [
+                {
+                    "name": "Authentication",
+                    "value": "Bearer {{token}}",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "95566330-6dec-422b-9a25-da602d9ef04f",
+            "colId": "518963d7-5e00-4e4c-9056-aba8ed8f2311",
+            "containerId": "35dda2f1-0a0a-4b85-acc5-e767f536c565",
+            "name": "add",
+            "url": "http://{{host}}:{{port}}/api/users/add",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-09-09T20:36:50.159Z",
+            "modified": "2023-09-10T04:15:18.673Z",
+            "headers": [
+                {
+                    "name": "Authentication",
+                    "value": "Bearer {{token}}",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"username\": \"test\",\n    \"password\": \"test\",\n    \"fname\": \"{{testfname}}\",\n    \"lname\": \"{{testlname}}\",\n    \"role\": \"admin\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "fcb04402-cc44-4912-b6eb-6a859051422b",
+            "colId": "518963d7-5e00-4e4c-9056-aba8ed8f2311",
+            "containerId": "a24caa04-d7c7-4884-8974-9b771be55c28",
+            "name": "createrole",
+            "url": "http://{{host}}:{{port}}/api/roles/createrole",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-09-10T15:33:46.590Z",
+            "modified": "2023-09-10T15:36:31.269Z",
+            "headers": [
+                {
+                    "name": "Authentication",
+                    "value": "Bearer {{token}}",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"role\": \"test\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "42871bf0-cd03-494d-beb9-fc2bbce89441",
+            "colId": "518963d7-5e00-4e4c-9056-aba8ed8f2311",
+            "containerId": "35dda2f1-0a0a-4b85-acc5-e767f536c565",
+            "name": "delete",
+            "url": "http://{{host}}:{{port}}/api/users/delete",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-09-10T03:54:58.652Z",
+            "modified": "2023-09-10T03:56:44.631Z",
+            "headers": [
+                {
+                    "name": "Authentication",
+                    "value": "Bearer {{token}}",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"username\": \"test\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "2a0622e0-3539-4fa4-add6-8688be60dd07",
+            "colId": "518963d7-5e00-4e4c-9056-aba8ed8f2311",
+            "containerId": "a24caa04-d7c7-4884-8974-9b771be55c28",
+            "name": "delete",
+            "url": "http://{{host}}:{{port}}/api/roles/delete",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-09-10T15:46:08.351Z",
+            "modified": "2023-09-10T15:46:23.694Z",
+            "headers": [
+                {
+                    "name": "Authentication",
+                    "value": "Bearer {{token}}",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"role\": \"test\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "edf40259-6c38-4122-9f01-b6b3a4eb52e1",
+            "colId": "518963d7-5e00-4e4c-9056-aba8ed8f2311",
+            "containerId": "35dda2f1-0a0a-4b85-acc5-e767f536c565",
+            "name": "list",
+            "url": "http://{{host}}:{{port}}/api/users/list",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-09-10T04:07:06.813Z",
+            "modified": "2023-09-10T04:07:32.599Z",
+            "headers": [
+                {
+                    "name": "Authentication",
+                    "value": "Bearer {{token}}",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "b537c862-f4cb-4efd-9d76-3f87c767539a",
+            "colId": "518963d7-5e00-4e4c-9056-aba8ed8f2311",
+            "containerId": "35dda2f1-0a0a-4b85-acc5-e767f536c565",
+            "name": "changePassword",
+            "url": "http://{{host}}:{{port}}/api/users/changePassword",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2023-09-10T04:14:19.366Z",
+            "modified": "2023-09-10T04:15:48.078Z",
+            "headers": [
+                {
+                    "name": "Authentication",
+                    "value": "Bearer {{token}}",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"test\",\n  \"password\": \"testing\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "2618a55d-15bc-4f59-bc36-b3b898825595",
+            "colId": "518963d7-5e00-4e4c-9056-aba8ed8f2311",
+            "containerId": "35dda2f1-0a0a-4b85-acc5-e767f536c565",
+            "name": "updateRole",
+            "url": "http://{{host}}:{{port}}/api/users/updateRole",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2023-09-10T16:06:10.021Z",
+            "modified": "2023-09-10T16:06:40.506Z",
+            "headers": [
+                {
+                    "name": "Authentication",
+                    "value": "Bearer {{token}}",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"test\",\n  \"role\": \"test\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "9e1d0167-f9aa-411b-a247-6137d1e20781",
+            "colId": "518963d7-5e00-4e4c-9056-aba8ed8f2311",
+            "containerId": "51e22e27-81bf-4313-b7ac-1527ca85ce9f",
+            "name": "getDeviceCount",
+            "url": "http://{{host}}:{{port}}/api/sdr/getDeviceCount",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2023-09-28T02:02:30.903Z",
+            "modified": "2023-09-28T02:03:14.414Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "2323e060-a37b-4d45-895b-944e5d953733",
+            "colId": "518963d7-5e00-4e4c-9056-aba8ed8f2311",
+            "containerId": "51e22e27-81bf-4313-b7ac-1527ca85ce9f",
+            "name": "getDeviceName",
+            "url": "http://{{host}}:{{port}}/api/sdr/getDeviceName",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2023-10-02T01:06:14.462Z",
+            "modified": "2023-10-02T01:11:57.818Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"device\": \"0\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{token}}"
+            },
+            "tests": []
+        }
+    ],
+    "settings": {
+        "options": {
+            "baseUrl": "http://localhost:8180/api/"
+        },
+        "envId": "3160a669-761e-45ca-9294-d75817e03f3e"
+    }
+}

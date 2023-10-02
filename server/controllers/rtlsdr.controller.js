@@ -11,12 +11,12 @@ module.exports = router;
 
 async function getDeviceCount(req, res, next) {
     await rtlsdrService.getDeviceCount(req.body)
-        .then(roles => res.json(roles))
+        .then(device => res.json(device))
         .catch(next);
 }
 
 async function getDeviceName(req, res, next) {
     await rtlsdrService.getDeviceName(req.body)
-    .then(roles => res.json(roles))
+    .then(device => res.json(device))
     .catch(next);
 }

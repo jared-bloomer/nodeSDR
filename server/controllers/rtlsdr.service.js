@@ -5,6 +5,11 @@ async function getDeviceCount() {
     return rtljs.getDeviceCount();
 }
 
+async function getDeviceName(req) {
+    return rtljs.getDeviceName(req.body);
+}
+
 module.exports = {
-    getDeviceCount
+    getDeviceCount,
+    getDeviceName
 };
